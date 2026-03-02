@@ -4,15 +4,15 @@ A GUI package manager for Arch Linux (pacman + yay).
 
 ---
 
-## Install on any Arch Linux machine
+## Installation
 
-Open a terminal and paste this one command:
+Open a terminal and paste this:
 
 ```bash
 bash <(curl -sL https://raw.githubusercontent.com/kubizekczek/yayhub/main/install.sh)
 ```
 
-Done. The app installs itself and appears in your app menu.
+That's it. One command — it downloads everything, installs dependencies, creates a launcher. After it finishes, open your app menu and search **YayHub**.
 
 ---
 
@@ -25,34 +25,6 @@ Done. The app installs itself and appears in your app menu.
 - Detect broken packages and missing files
 - Check for updates
 - Dark theme, fast search, clean UI
-
----
-
-## Requirements
-
-- Arch Linux (or any Arch-based distro like CachyOS, EndeavourOS, Manjaro)
-- `git` and `python3` (the installer checks for these)
-- `yay` (optional, for AUR support)
-
-If you don't have yay:
-
-```bash
-sudo pacman -S --needed git base-devel
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-```
-
----
-
-## Run manually (if already cloned)
-
-```bash
-cd yayhub
-python3 -m venv venv
-./venv/bin/pip install -r requirements.txt
-./venv/bin/python3 main.py
-```
 
 ---
 

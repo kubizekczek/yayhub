@@ -15,8 +15,8 @@ logger = logging.getLogger(__name__)
 
 # (internal_name, emoji, label)
 _CATS = [
-    ("Aplikacje",           "🛒", "Aplikacje"),
-    ("Usługi",              "🔧", "Usługi"),
+    ("Apps",                "🛒", "Apps"),
+    ("Services",            "🔧", "Services"),
     ("---sep1", "", ""),
     ("All Packages",        "📦", "All Packages"),
     ("Installed",           "✅", "Installed"),

@@ -2,59 +2,59 @@
 
 ###############################################################################
 # YayHub Installer - Git Version
-# Pobiera aplikację z Git i instaluje ją
+# Downloads the app from Git and installs it
 ###############################################################################
 
 set -e  # Exit on error
 
-# Konfiguracja
+# Configuration
 REPO_URL="${1:-https://github.com/kubizekczek/yayhub.git}"
 INSTALL_DIR="${HOME}/.local/opt/yayhub"
 
 echo "╔════════════════════════════════════════╗"
-echo "║      YayHub - Instalator                ║"
-echo "║   (Package Manager dla Arch)            ║"
+echo "║      YayHub - Installer                 ║"
+echo "║   (Package Manager for Arch)            ║"
 echo "╚════════════════════════════════════════╝"
 echo ""
 
-# Sprawdzenie czy Git jest zainstalowany
+# Check if Git is installed
 if ! command -v git &> /dev/null; then
-    echo "❌ Git nie jest zainstalowany!"
-    echo "   Zainstaluj: sudo pacman -S git"
+    echo "❌ Git is not installed!"
+    echo "   Install it: sudo pacman -S git"
     exit 1
 fi
 
-# Sprawdzenie czy Python3 jest zainstalowany
+# Check if Python3 is installed
 if ! command -v python3 &> /dev/null; then
-    echo "❌ Python3 nie jest zainstalowany!"
-    echo "   Zainstaluj: sudo pacman -S python"
+    echo "❌ Python3 is not installed!"
+    echo "   Install it: sudo pacman -S python"
     exit 1
 fi
 
-echo "📥 Pobieranie repozytorium..."
+echo "📥 Downloading repository..."
 if [ -d "$INSTALL_DIR" ]; then
-    echo "⚠️  Katalog $INSTALL_DIR już istnieje. Usuwanie..."
+    echo "⚠️  Directory $INSTALL_DIR already exists. Removing..."
     rm -rf "$INSTALL_DIR"
 fi
 
 git clone "$REPO_URL" "$INSTALL_DIR" || {
-    echo "❌ Nie udało się sklonować repozytorium!"
-    echo "   Sprawdź czy URL jest poprawny: $REPO_URL"
+    echo "❌ Failed to clone repository!"
+    echo "   Check if the URL is correct: $REPO_URL"
     exit 1
 }
 
 cd "$INSTALL_DIR"
 
 echo ""
-echo "📦 Tworzenie wirtualnego środowiska Pythona..."
+echo "📦 Creating Python virtual environment..."
 python3 -m venv venv
 
-echo "⬇️  Instalowanie zależności..."
+echo "⬇️  Installing dependencies..."
 ./venv/bin/pip install --upgrade pip
 ./venv/bin/pip install -r requirements.txt
 
 echo ""
-echo "🔧 Tworzenie desktop launcher'a..."
+echo "🔧 Creating desktop launcher..."
 mkdir -p ~/.local/share/applications
 
 cat > ~/.local/share/applications/yayhub.desktop << EOF
@@ -62,7 +62,7 @@ cat > ~/.local/share/applications/yayhub.desktop << EOF
 Version=1.0
 Type=Application
 Name=YayHub
-Comment=Package Manager GUI dla Arch Linuxa
+Comment=Package Manager GUI for Arch Linux
 Exec=$INSTALL_DIR/venv/bin/python3 $INSTALL_DIR/main.py
 Icon=system-software-install
 Categories=System;Utility;
@@ -72,11 +72,11 @@ EOF
 chmod +x ~/.local/share/applications/yayhub.desktop
 
 echo ""
-echo "✅ Instalacja zakończona!"
+echo "✅ Installation complete!"
 echo ""
-echo "Aby uruchomić aplikację:"
-echo "  • Szukaj 'YayHub' w menu aplikacji"
-echo "  • Lub w terminalu: $INSTALL_DIR/venv/bin/python3 $INSTALL_DIR/main.py"
+echo "To run the app:"
+echo "  • Search 'YayHub' in your app menu"
+echo "  • Or in terminal: $INSTALL_DIR/venv/bin/python3 $INSTALL_DIR/main.py"
 echo ""
-echo "📍 Ścieżka instalacji: $INSTALL_DIR"
+echo "📍 Install path: $INSTALL_DIR"
 echo ""

@@ -493,9 +493,9 @@ class MainWindow(QMainWindow):
 
     def _on_cat(self, c):
         self.cat = c
-        if c == "Aplikacje":
+        if c == "Apps":
             self._show_view("apps")
-        elif c == "Usługi":
+        elif c == "Services":
             self._show_view("services")
         elif c == "NO INTERESING":
             self._show_view("apps_niche")

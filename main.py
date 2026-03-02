@@ -47,8 +47,8 @@ def _acquire_sudo() -> bool:
 
     for attempt in range(3):
         password, ok = QInputDialog.getText(
-            None, "YayHub – Autoryzacja",
-            "Podaj hasło sudo aby zarządzać pakietami:",
+            None, "YayHub – Authorization",
+            "Enter sudo password to manage packages:",
             QLineEdit.EchoMode.Password
         )
         if not ok:
@@ -63,7 +63,7 @@ def _acquire_sudo() -> bool:
             )
             if r.returncode == 0:
                 return True
-            QMessageBox.warning(None, "YayHub", "Nieprawidłowe hasło. Spróbuj ponownie.")
+            QMessageBox.warning(None, "YayHub", "Incorrect password. Try again.")
         except Exception as e:
             logger.error(f"sudo auth error: {e}")
             return False
@@ -84,7 +84,7 @@ def main():
 
         # --- Acquire sudo once at startup ---
         if not _acquire_sudo():
-            QMessageBox.critical(None, "YayHub", "Autoryzacja sudo nie powiodła się.\nAplikacja zostanie zamknięta.")
+            QMessageBox.critical(None, "YayHub", "Sudo authorization failed.\nThe application will close.")
             sys.exit(1)
 
         # Keep sudo alive in background so the password isn't asked again

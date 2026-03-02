@@ -1,102 +1,102 @@
-# YayHub - Instrukcja Instalacji
+# YayHub - Installation Guide
 
-Szybka i łatwa instalacja aplikacji z Git.
+Quick and easy installation from Git.
 
-## Wymagania
+## Requirements
 
-- **Arch Linux** lub pochodne (Manjaro, EndeavourOS, itp.)
+- **Arch Linux** or derivatives (Manjaro, EndeavourOS, CachyOS, etc.)
 - **Python 3.8+**
 - **Git**
 
-## Szybka Instalacja (1 komenda)
+## Quick Install (1 command)
 
 ```bash
 bash <(curl -sL https://github.com/kubizekczek/yayhub/raw/main/install.sh)
 ```
 
-Lub jeśli masz plik `install.sh` lokalnie:
+Or if you have the `install.sh` file locally:
 
 ```bash
 chmod +x install.sh
 ./install.sh
 ```
 
-## Krok po kroku
+## Step by step
 
-### 1. Pobierz skrypt instalacyjny
+### 1. Download the repository
 ```bash
 git clone https://github.com/kubizekczek/yayhub.git
 cd yayhub
 ```
 
-### 2. Uruchom instalator
+### 2. Run the installer
 ```bash
 chmod +x install.sh
 ./install.sh
 ```
 
-Skrypt automatycznie:
-- ✅ Sprawdzi wymagane zależności (Python, Git)
-- ✅ Sklonuje repozytorium do `~/.local/opt/yayhub`
-- ✅ Utworzy wirtualne środowisko Python
-- ✅ Zainstaluje wszystkie zależności
-- ✅ Stworzy launcher w menu aplikacji
+The script will automatically:
+- ✅ Check required dependencies (Python, Git)
+- ✅ Clone the repository to `~/.local/opt/yayhub`
+- ✅ Create a Python virtual environment
+- ✅ Install all dependencies
+- ✅ Create a launcher in the app menu
 
-### 3. Uruchom aplikację
+### 3. Run the app
 
-**Metoda 1 - Menu aplikacji:**
-- Otwórz menu aplikacji
-- Wyszukaj "YayHub"
-- Kliknij aby uruchomić
+**Method 1 - App menu:**
+- Open app menu
+- Search "YayHub"
+- Click to launch
 
-**Metoda 2 - Linia poleceń:**
+**Method 2 - Command line:**
 ```bash
 ~/.local/opt/yayhub/venv/bin/python3 ~/.local/opt/yayhub/main.py
 ```
 
-## Ścieżki instalacji
+## Install paths
 
-- **Katalog instalacji:** `~/.local/opt/yayhub`
-- **Launcher aplikacji:** `~/.local/share/applications/yayhub.desktop`
+- **Install directory:** `~/.local/opt/yayhub`
+- **App launcher:** `~/.local/share/applications/yayhub.desktop`
 - **Python venv:** `~/.local/opt/yayhub/venv`
 
-## Odinstalowanie
+## Uninstall
 
 ```bash
 rm -rf ~/.local/opt/yayhub
 rm ~/.local/share/applications/yayhub.desktop
 ```
 
-## Rozwiązywanie problemów
+## Troubleshooting
 
-### "Git nie jest zainstalowany!"
+### "Git is not installed!"
 ```bash
 sudo pacman -S git
 ```
 
-### "Python3 nie jest zainstalowany!"
+### "Python3 is not installed!"
 ```bash
 sudo pacman -S python
 ```
 
-### Aplikacja się nie uruchamia
-Spróbuj uruchomić ręcznie aby zobaczyć błąd:
+### App won't start
+Try running manually to see the error:
 ```bash
 ~/.local/opt/yayhub/venv/bin/python3 ~/.local/opt/yayhub/main.py
 ```
 
-### Aktualizacja do najnowszej wersji
+### Update to the latest version
 ```bash
 cd ~/.local/opt/yayhub
 git pull origin main
 ./venv/bin/pip install -r requirements.txt
 ```
 
-## Wsparcie
+## Support
 
-Przy problemach otwórz issue na GitHubie: https://github.com/kubizekczek/yayhub/issues
+If you have issues, open an issue on GitHub: https://github.com/kubizekczek/yayhub/issues
 
 ---
 
-**Wersja:** 1.0  
-**Data:** 2 marca 2026
+**Version:** 1.0  
+**Author:** kubizz

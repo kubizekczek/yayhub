@@ -117,7 +117,7 @@ class ServicesWidget(QWidget):
         # Search
         search_row = QHBoxLayout()
         self._search = QLineEdit()
-        self._search.setPlaceholderText("🔍  Szukaj usług...")
+        self._search.setPlaceholderText("🔍  Search services...")
         self._search.setFixedHeight(38)
         self._search.setStyleSheet("""
             QLineEdit {
@@ -130,7 +130,7 @@ class ServicesWidget(QWidget):
         self._search.textChanged.connect(self._apply_filter)
         search_row.addWidget(self._search)
 
-        refresh_btn = QPushButton("Odśwież")
+        refresh_btn = QPushButton("Refresh")
         refresh_btn.setFixedHeight(38)
         refresh_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         refresh_btn.setStyleSheet("""
@@ -146,14 +146,14 @@ class ServicesWidget(QWidget):
         lay.addLayout(search_row)
 
         # Info
-        self._info = QLabel("Ładowanie usług...")
+        self._info = QLabel("Loading services...")
         self._info.setStyleSheet("color: #888; font-size: 12px;")
         lay.addWidget(self._info)
 
         # Table
         self.tbl = QTableWidget()
         self.tbl.setColumnCount(5)
-        self.tbl.setHorizontalHeaderLabels(["Usługa", "Stan", "Status", "Autostart", "Akcje"])
+        self.tbl.setHorizontalHeaderLabels(["Service", "State", "Status", "Autostart", "Actions"])
         h = self.tbl.horizontalHeader()
         h.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         h.setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
@@ -202,7 +202,7 @@ class ServicesWidget(QWidget):
         lay.addWidget(self.tbl, stretch=1)
 
     def _load(self):
-        self._info.setText("Ładowanie usług...")
+        self._info.setText("Loading services...")
         self._thread = ServiceLoaderThread()
         self._thread.services_loaded.connect(self._on_loaded)
         self._thread.start()
@@ -228,7 +228,7 @@ class ServicesWidget(QWidget):
 
             # Running status
             running = svc.get('running', False)
-            run_item = QTableWidgetItem("🟢 Działa" if running else "⚫ Zatrzymana")
+            run_item = QTableWidgetItem("🟢 Running" if running else "⚫ Stopped")
             run_item.setForeground(QColor("#50fa7b") if running else QColor("#888"))
             self.tbl.setItem(row, 1, run_item)
 
@@ -244,7 +244,7 @@ class ServicesWidget(QWidget):
 
             # Autostart
             is_enabled = state == 'enabled'
-            auto_item = QTableWidgetItem("✅ Tak" if is_enabled else "❌ Nie")
+            auto_item = QTableWidgetItem("✅ Yes" if is_enabled else "❌ No")
             self.tbl.setItem(row, 3, auto_item)
 
             # Action buttons
@@ -280,7 +280,7 @@ class ServicesWidget(QWidget):
             self.tbl.setCellWidget(row, 4, actions_w)
 
         self.tbl.setSortingEnabled(True)
-        self._info.setText(f"{len(filtered)} usług" + (f" (filtr: {q})" if q else ""))
+        self._info.setText(f"{len(filtered)} services" + (f" (filter: {q})" if q else ""))
 
     def _do_action(self, service_name, action):
         self._info.setText(f"{action} {service_name}...")
@@ -290,8 +290,8 @@ class ServicesWidget(QWidget):
             if ok:
                 self._info.setText(f"✅ {action} {service_name} — OK")
             else:
-                self._info.setText(f"❌ {action} {service_name} — błąd")
-                QMessageBox.warning(self, "Błąd", f"{action} {service_name} nie powiodło się:\n{msg}")
+                self._info.setText(f"❌ {action} {service_name} — error")
+                QMessageBox.warning(self, "Error", f"{action} {service_name} failed:\n{msg}")
             QTimer.singleShot(500, self._load)
 
         self._action_thread.finished.connect(done)

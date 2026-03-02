@@ -11,7 +11,7 @@ Szybka i łatwa instalacja aplikacji z Git.
 ## Szybka Instalacja (1 komenda)
 
 ```bash
-bash <(curl -sL https://github.com/yourusername/yayhub/raw/main/install.sh)
+bash <(curl -sL https://github.com/kubizekczek/yayhub/raw/main/install.sh)
 ```
 
 Lub jeśli masz plik `install.sh` lokalnie:
@@ -25,7 +25,7 @@ chmod +x install.sh
 
 ### 1. Pobierz skrypt instalacyjny
 ```bash
-git clone https://github.com/yourusername/yayhub.git
+git clone https://github.com/kubizekczek/yayhub.git
 cd yayhub
 ```
 
@@ -94,7 +94,7 @@ git pull origin main
 
 ## Wsparcie
 
-Przy problemach otwórz issue na GitHubie: https://github.com/yourusername/yayhub/issues
+Przy problemach otwórz issue na GitHubie: https://github.com/kubizekczek/yayhub/issues
 
 ---
 

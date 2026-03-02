@@ -8,7 +8,7 @@
 set -e  # Exit on error
 
 # Konfiguracja
-REPO_URL="${1:-https://github.com/yourusername/yayhub}"
+REPO_URL="${1:-https://github.com/kubizekczek/yayhub.git}"
 INSTALL_DIR="${HOME}/.local/opt/yayhub"
 
 echo "╔════════════════════════════════════════╗"

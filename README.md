@@ -1,4 +1,4 @@
-# Pacman GUI
+# Yay gui
 
 PyQt6 frontend do **pacmana** i **yay** dla Arch Linuksa.
 
@@ -84,30 +84,6 @@ Lub jeśli zainstalowałeś desktop entry:
 4. **Refresh** - odśwież listę pakietów z systemu
 5. **Listę pakietów** - kliknij na pakiet aby zobaczyć szczegóły
 6. **Szczegóły** - przycisk "Install" lub "Remove" (zależy od statusu)
-
-## Struktura projektu
-
-```
-aplikacja/
-├── main.py                          # Punkt wejścia
-├── requirements.txt                 # Zależności Python
-├── install.sh                       # Skrypt instalacyjny
-├── README.md                        # Ten plik
-└── pacman_gui/                      # Główny pakiet
-    ├── __init__.py
-    ├── utils/                       # Moduły narzędziowe
-    │   ├── __init__.py
-    │   ├── package_manager.py       # Wrapper pacman/yay
-    │   └── cache_manager.py         # Zarządzanie cache
-    └── ui/                          # Interfejs użytkownika
-        ├── __init__.py
-        ├── main_window.py           # Główne okno
-        ├── search_widget.py         # Widget wyszukiwania
-        ├── package_list_widget.py   # Widget listy pakietów
-        └── package_details_widget.py # Widget szczegółów
-```
-
-## Architektura
 
 ### `package_manager.py`
 - Wrapper dla komend pacman i yay

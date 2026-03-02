@@ -9,7 +9,7 @@ A GUI package manager for Arch Linux (pacman + yay).
 Open a terminal and paste this:
 
 ```bash
-bash <(curl -sL https://raw.githubusercontent.com/kubizekczek/yayhub/main/install.sh)
+curl -sL https://raw.githubusercontent.com/kubizekczek/yayhub/main/install.sh | bash
 ```
 
 That's it. One command — it downloads everything, installs dependencies, creates a launcher. After it finishes, open your app menu and search **YayHub**.
